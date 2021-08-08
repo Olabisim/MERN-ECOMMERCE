@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
     productListReducer,
     productDetailsReducer,
+    productDeleteReducer,
 } from "./reducers/productReducers";
 import cartReducers from "./reducers/cartReducers";
 import {
@@ -25,10 +26,14 @@ import {
 // pattern of
 // variable : variablereducer
 const reducer = combineReducers({
+
     // your value: imported value
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    productDelete: productDeleteReducer,
+
     cart: cartReducers,
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
@@ -36,6 +41,7 @@ const reducer = combineReducers({
     userList: userListReducer,
     userDelete: userDeleteReducer,
     userUpdate: userUpdateReducer,
+
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
