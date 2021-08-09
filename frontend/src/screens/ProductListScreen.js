@@ -6,6 +6,8 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { listProducts, deleteProductAction, createProductAction } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET }  from '../constants/productConstants'
+
+
 // we always bring history from props
 const ProductListScreen = ({ history, match }) => {
 
@@ -65,7 +67,7 @@ const ProductListScreen = ({ history, match }) => {
     const createProductHandler = () => {
 
         // CREATE PRODUCT
-        dispatch({createProductAction()})
+        dispatch(createProductAction())
 
     }
 
@@ -80,7 +82,7 @@ const ProductListScreen = ({ history, match }) => {
                 </Col>
                 <Col className='text-right'>
 
-                    <Button className='my-3' onClick={createProductHandler}>
+                    <Button className='my-3' onClick={() => createProductHandler()}>
 
                         <i className='fas fa-plus'></i> Create Product
 
