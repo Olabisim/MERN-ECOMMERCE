@@ -17,6 +17,10 @@ import {
     PRODUCT_CREATE_REQUEST,
     PRODUCT_CREATE_SUCCESS,
     PRODUCT_CREATE_FAILURE,
+    
+    PRODUCT_UPDATE_REQUEST,
+    PRODUCT_UPDATE_SUCCESS,
+    PRODUCT_UPDATE_FAILURE,
 
 } from "../constants/productConstants";
 
@@ -136,6 +140,47 @@ export const createProductAction = () => async (dispatch, getState) => {
         dispatch({
 
             type: PRODUCT_CREATE_FAILURE,
+            payload:  
+                error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+
+        })
+    }
+
+}
+
+export const updateProductAction = (product) => async (dispatch, getState) => {
+    
+    try {
+        dispatch({
+            type: PRODUCT_UPDATE_REQUEST,
+        })
+
+        const {
+            userLogin: {userInfo},
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        
+        const { data } = await axios.put(`/api/products/${product._id}`, product, config)
+
+        dispatch({
+            type: PRODUCT_UPDATE_SUCCESS,
+            payload: data
+
+        })
+
+    }
+    catch (error) {
+        dispatch({
+
+            type: PRODUCT_UPDATE_FAILURE,
             payload:  
                 error.response && error.response.data.message
                 ? error.response.data.message
