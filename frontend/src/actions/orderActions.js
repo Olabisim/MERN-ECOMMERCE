@@ -21,6 +21,10 @@ import {
     ORDER_LIST_SUCCESS,
     ORDER_LIST_FAILURE,
 
+    ORDER_DELIVER_REQUEST,
+    ORDER_DELIVER_SUCCESS,
+    ORDER_DELIVER_FAILURE,
+
 } from "../constants/orderConstants";
 
 // action always dispatch
@@ -138,6 +142,47 @@ export const payOrderAction = (orderId, paymentResult) => async (dispatch, getSt
         dispatch({
 
             type: ORDER_PAY_FAILURE,
+            payload:  
+                error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+
+        })
+    }
+
+}
+
+
+export const deliverOrderAction = (order) => async (dispatch, getState) => {
+    
+    try {
+        dispatch({
+            type: ORDER_DELIVER_REQUEST,
+        })
+
+        const {
+            userLogin: {userInfo},
+        } = getState()
+
+        const config = {
+            headers: {
+                // 'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        
+        const { data } = await axios.put(`/api/orders/${order._id}/deliver`, {}, config)
+
+        dispatch({
+            type: ORDER_DELIVER_SUCCESS,
+            payload: data,
+        })
+
+    }
+    catch (error) {
+        dispatch({
+
+            type: ORDER_DELIVER_FAILURE,
             payload:  
                 error.response && error.response.data.message
                 ? error.response.data.message

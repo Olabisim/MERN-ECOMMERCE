@@ -24,6 +24,7 @@ import {
     orderPayReducer,
     myOrderListReducer,
     orderListReducer,
+    orderDeliverReducer,
 } from "./reducers/orderReducers";
 
 // pattern of
@@ -50,6 +51,7 @@ const reducer = combineReducers({
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
+    orderDeliver: orderDeliverReducer,
     myOrderList: myOrderListReducer,
     orderList: orderListReducer,
 });
