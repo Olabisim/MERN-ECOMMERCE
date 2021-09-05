@@ -15,7 +15,12 @@ import {
     
     MY_ORDER_LIST_REQUEST,
     MY_ORDER_LIST_SUCCESS,
-    MY_ORDER_LIST_FAILURE
+    MY_ORDER_LIST_FAILURE,
+
+    ORDER_LIST_REQUEST,
+    ORDER_LIST_SUCCESS,
+    ORDER_LIST_FAILURE,
+
 } from "../constants/orderConstants";
 
 // action always dispatch
@@ -178,6 +183,47 @@ export const myOrderListAction = () => async (dispatch, getState) => {
         dispatch({
 
             type: MY_ORDER_LIST_FAILURE,
+            payload:  
+                error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+
+        })
+    }
+
+}
+
+
+export const listOrdersAction = () => async (dispatch, getState) => {
+    
+    try {
+        dispatch({
+            type: ORDER_LIST_REQUEST,
+        })
+
+        const {
+            userLogin: {userInfo},
+        } = getState()
+
+        const config = {
+            headers: {
+                // 'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        
+        const { data } = await axios.get(`/api/orders`, config)
+
+        dispatch({
+            type: ORDER_LIST_SUCCESS,
+            payload: data,
+        })
+
+    }
+    catch (error) {
+        dispatch({
+
+            type: ORDER_LIST_FAILURE,
             payload:  
                 error.response && error.response.data.message
                 ? error.response.data.message

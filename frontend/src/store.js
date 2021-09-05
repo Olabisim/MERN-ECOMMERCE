@@ -23,6 +23,7 @@ import {
     orderDetailsReducer,
     orderPayReducer,
     myOrderListReducer,
+    orderListReducer,
 } from "./reducers/orderReducers";
 
 // pattern of
@@ -50,6 +51,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     myOrderList: myOrderListReducer,
+    orderList: orderListReducer,
 });
 
 // if cart items is found then parse it or else return empty array
