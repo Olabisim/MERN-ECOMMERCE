@@ -19,16 +19,16 @@ warning your postman no auth is not working oo
 
 */
 
+dotenv.config()
+
+connectDB()
+
 const app = express();
 
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-
-dotenv.config()
-
-connectDB()
 
 app.use(express.json())
 
