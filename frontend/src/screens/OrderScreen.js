@@ -106,7 +106,7 @@ const OrderScreen = ({match, history}) => {
             }
         }
 
-    }, [dispatch, order, orderId, successPay, successDeliver])
+    }, [dispatch, order, orderId, successPay, successDeliver, history, userInfo])
 
     // this exactly from paypal takes in 
     const successPaymentHandler = (paymentResult) => {
