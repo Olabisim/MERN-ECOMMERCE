@@ -10,7 +10,10 @@ import { listProducts } from "../actions/productActions";
 // data
 // import products from '../products'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+
+    const keyword = match.params.keyword
+
     const dispatch = useDispatch();
 
     const productList = useSelector((state) => state.productList);
@@ -24,7 +27,7 @@ const HomeScreen = () => {
     // only on load useeffect fires if no dependencies are passed
     // for example the useEffect below fires on load
     useEffect(() => {
-        dispatch(listProducts());
+        dispatch(listProducts(keyword));
 
         // const fetchProducts = async () => {
 
@@ -36,7 +39,7 @@ const HomeScreen = () => {
         // }
 
         // fetchProducts()
-    }, [dispatch]);
+    }, [dispatch, keyword]);
 
     return (
         <>

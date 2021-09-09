@@ -8,7 +8,19 @@ import Product from "../models/productModel.js";
 
 export const getProducts = asyncHandler(async (req, res) => {
     // Product.find({}) means find all
-    const products = await Product.find({});
+
+    const keyword = req.query.keyword ? {
+
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i',
+        }
+
+    } 
+    :
+    {}
+
+    const products = await Product.find({ ...keyword });
     
     res.json(products);
     //will send api format
