@@ -9,7 +9,7 @@ import Product from "../models/productModel.js";
 export const getProducts = asyncHandler(async (req, res) => {
     // Product.find({}) means find all
 
-    const pageSize = 2;
+    const pageSize = 10;
     const page = Number(req.query.pageNumber) || 1;
 
     const keyword = req.query.keyword ? {
@@ -192,3 +192,17 @@ export const createProductReview = asyncHandler(async (req, res) => {
 
 
 }) 
+
+
+// @desc        Get top rated products
+// @routes      GET /api/products/top
+// @access      Public
+
+export const getTopProducts = asyncHandler(async (req, res) => {
+    
+    const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+
+    res.json(products)
+
+}) 
+
