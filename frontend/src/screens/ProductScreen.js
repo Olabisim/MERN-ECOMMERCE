@@ -7,6 +7,7 @@ import Rating from "../components/Rating";
 import { listProductDetails, createProductReviewAction } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 // import products from "../products";
 
@@ -88,6 +89,7 @@ const ProductScreen = ({ history, match }) => {
                 <Message variant="danger">{error}</Message>
             ) : (
                 <>
+                    <Meta title={product.name} />
                     <Row>
                         <Col md={6}>
                             {/* the meaning of fluid is to keep the pic front passing it's container */}
