@@ -7,7 +7,6 @@ import Product from "../models/productModel.js";
 // @access      Public
 
 export const getProducts = asyncHandler(async (req, res) => {
-
     // Product.find({}) means find all
 
     const pageSize = 2;
@@ -24,15 +23,11 @@ export const getProducts = asyncHandler(async (req, res) => {
     :
     {}
 
-
     const count = await Product.countDocuments({ ...keyword })
-    const products = await Product.find({ ...keyword })
-        .limit(pageSize)
-        .skip(pageSize * (page - 1 ));
+    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * ( page - 1 ));
     
-    res.json({products, page, pages: Math.ceil(count / pageSize) });
+    res.json({products, page, pages: Math.ceil(count / pageSize )});
     //will send api format
-    
 })
 
 

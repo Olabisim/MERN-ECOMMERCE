@@ -40,7 +40,7 @@ const HomeScreen = ({ match }) => {
         // setProducts(data)
 
         // }
-
+ 
         // fetchProducts()
     }, [dispatch, keyword, pageNumber]);
 
@@ -65,9 +65,7 @@ const HomeScreen = ({ match }) => {
                             </Col>
                         ))}
                     </Row>
-
-                    <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
-
+                    <Paginate pages={pages} page={page} keyword={keyword ? keyword : "" } />
                 </>
             )}
         </>

@@ -16,6 +16,7 @@ const ProductListScreen = ({ history, match }) => {
 
     const dispatch = useDispatch()
 
+
     const productList = useSelector(state => state.productList)
     const { loading, error, products, page, pages } = productList;
     
@@ -52,7 +53,7 @@ const ProductListScreen = ({ history, match }) => {
             history.push(`/admin/product/${createdProduct._id}/edit`)
         }
         else {
-            dispatch(listProducts("", pageNumber))
+            dispatch(listProducts('', pageNumber))
         }
 
     }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct, pageNumber])
@@ -114,6 +115,7 @@ const ProductListScreen = ({ history, match }) => {
                 :
                 (
                     <>
+
                     <Table striped bordered hover responsive className="table-sm">
                         <thead>
                             <tr>
@@ -161,7 +163,9 @@ const ProductListScreen = ({ history, match }) => {
                         </tbody>
                     </Table>
 
-                    <Paginate pages={pages} page={page} isAdmin={true} />
+                    <Paginate page={page} pages={pages} isAdmin={true} />
+
+
                     </>
                 )
             }   
