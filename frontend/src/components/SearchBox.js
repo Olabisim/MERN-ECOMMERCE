@@ -22,7 +22,7 @@ const SearchBox = ({history}) => {
     }
 
     return (
-        <Form onSubmit={submitHandler} inline>
+        <Form onSubmit={submitHandler} inline style={{ display: "inline-flex"}}>
 
             <Form.Control
                 type="text"
