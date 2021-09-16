@@ -13,9 +13,15 @@ import uploadRoutes from './routes/uploadRoutes.js'
 
 
 
-/* 
+/*
 
-warning your postman no auth is not working oo
+
+
+
+    warning your postman no auth is not working oo
+
+
+    
 
 */
 
@@ -31,10 +37,6 @@ if(process.env.NODE_ENV === 'development') {
 
 
 app.use(express.json())
-
-app.get('/', (req, res) => {
-    res.send("API IS RUNNING ");
-})
 
 app.use('/api/products', productRoutes )
 app.use('/api/users', userRoutes )
